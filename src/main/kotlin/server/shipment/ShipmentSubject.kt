@@ -1,4 +1,4 @@
-package shipment
+package server.shipment
 
 interface ShipmentSubject {
     fun subscribe(observer: ShipmentObserver)

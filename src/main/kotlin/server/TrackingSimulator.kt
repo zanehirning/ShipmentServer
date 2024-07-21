@@ -1,5 +1,7 @@
-import shipment.Shipment
-import updates.*
+package server
+
+import server.shipment.Shipment
+import server.updates.*
 
 object TrackingSimulator {
     private val updateOperations: Map<String, Update> = mapOf(

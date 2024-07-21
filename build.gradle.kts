@@ -20,6 +20,8 @@ dependencies {
     // (in a separate module for demo project and in testMain).
     // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.currentOs)
+    implementation("io.ktor:ktor-server-core:2.3.12")
+    implementation("io.ktor:ktor-server-netty:2.3.12")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 }
 

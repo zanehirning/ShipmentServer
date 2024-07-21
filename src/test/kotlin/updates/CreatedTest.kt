@@ -1,6 +1,8 @@
 package updates
 
-import shipment.Shipment
+import server.updates.Update
+import server.shipment.Shipment
+import server.updates.Created
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

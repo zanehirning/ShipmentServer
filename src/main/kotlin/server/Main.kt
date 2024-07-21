@@ -1,11 +1,10 @@
+package server
+
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
@@ -19,9 +18,9 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.delay
-import ui.ErrorShipmentItem
-import ui.ShipmentItem
-import viewmodels.TrackerViewModel
+import server.ui.ErrorShipmentItem
+import server.ui.ShipmentItem
+import server.viewmodels.TrackerViewModel
 
 @Composable
 @Preview
@@ -31,10 +30,7 @@ fun App() {
 
     MaterialTheme {
         LaunchedEffect(true) {
-            while (true) {
-                TrackingSimulator.runSimulation()
-                delay(1000)
-            }
+            TrackingServer
         }
         Column(modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState())) {
             Row(

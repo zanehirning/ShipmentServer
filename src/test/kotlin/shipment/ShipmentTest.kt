@@ -1,8 +1,9 @@
 package shipment
 
-import shipment.Shipment
-import updates.*
-import kotlin.reflect.KProperty
+import server.shipment.Shipment
+import server.shipment.ShipmentObserver
+import server.shipment.ShippingUpdate
+import server.updates.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

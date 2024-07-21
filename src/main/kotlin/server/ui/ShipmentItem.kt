@@ -1,10 +1,8 @@
-package ui
+package server.ui
 
-import shipment.Shipment
-import androidx.compose.foundation.ExperimentalFoundationApi
+import server.shipment.Shipment
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.onClick
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text

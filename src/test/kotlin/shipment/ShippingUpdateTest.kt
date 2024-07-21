@@ -1,6 +1,7 @@
 package shipment
 
 import org.junit.jupiter.api.Test
+import server.shipment.ShippingUpdate
 
 class ShippingUpdateTest {
     @Test

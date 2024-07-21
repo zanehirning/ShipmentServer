@@ -2,7 +2,9 @@ package updates
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import shipment.Shipment
+import server.updates.Delivered
+import server.updates.Update
+import server.shipment.Shipment
 import kotlin.test.assertTrue
 
 class DeliveredTest {

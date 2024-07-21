@@ -1,6 +1,6 @@
-package updates
+package server.updates
 
-import shipment.Shipment
+import server.shipment.Shipment
 
 interface Update {
     fun apply(shipment: Shipment, otherInfo: String)

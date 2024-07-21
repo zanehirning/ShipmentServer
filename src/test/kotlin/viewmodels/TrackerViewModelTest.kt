@@ -1,8 +1,9 @@
 package viewmodels
 
-import TrackingSimulator
+import server.TrackingSimulator
 import org.junit.jupiter.api.Test
-import shipment.Shipment
+import server.shipment.Shipment
+import server.viewmodels.TrackerViewModel
 import kotlin.test.assertEquals
 
 class TrackerViewModelTest {

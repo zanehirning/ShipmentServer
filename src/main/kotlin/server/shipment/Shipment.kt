@@ -1,6 +1,6 @@
-package shipment
+package server.shipment
 
-import updates.Update
+import server.updates.Update
 
 class Shipment(
     val id: String,

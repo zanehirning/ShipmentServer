@@ -1,4 +1,4 @@
-package shipment
+package server.shipment
 
 class ShippingUpdate(
     val previousStatus: String,

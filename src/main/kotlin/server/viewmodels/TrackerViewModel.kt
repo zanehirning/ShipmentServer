@@ -1,8 +1,8 @@
-package viewmodels
+package server.viewmodels
 
-import shipment.Shipment
-import shipment.ShipmentObserver
-import TrackingSimulator
+import server.shipment.Shipment
+import server.shipment.ShipmentObserver
+import server.TrackingSimulator
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.input.TextFieldValue
 

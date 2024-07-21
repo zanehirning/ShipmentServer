@@ -1,7 +1,7 @@
-package updates
+package server.updates
 
-import shipment.Shipment
-import TrackingSimulator
+import server.shipment.Shipment
+import server.TrackingSimulator
 
 class Created : Update {
     override fun apply(shipment: Shipment, otherInfo: String) {
