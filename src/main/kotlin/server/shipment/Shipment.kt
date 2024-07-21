@@ -22,7 +22,7 @@ abstract class Shipment(
         }
     var updateHistory = mutableListOf<ShippingUpdate>()
         private set
-    var expectedDeliveryDateTimestamp: Long = 0
+    open var expectedDeliveryDateTimestamp: Long = 0
     private val subscribers = mutableListOf<ShipmentObserver>()
 
     fun addUpdate(update: Update, timeStampOfUpdate: String, otherInfo: String) {
