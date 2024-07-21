@@ -10,15 +10,12 @@ import server.controllers.TrackingController.updateShipment
 import java.io.File
 
 object TrackingServer {
-    val server: ApplicationEngine
-    init {
-        server = embeddedServer(Netty, port = 8080) {
-            routing {
-                get("/") {
-                    call.respondText(File("src/main/kotlin/client/index.html").readText(), ContentType.Text.Html)
-                }
-                updateShipment()
+    val server: ApplicationEngine = embeddedServer(Netty, port = 8080) {
+        routing {
+            get("/") {
+                call.respondText(File("src/main/kotlin/client/index.html").readText(), ContentType.Text.Html)
             }
-        }.start(wait = true)
-    }
+            updateShipment()
+        }
+    }.start(wait = true)
 }

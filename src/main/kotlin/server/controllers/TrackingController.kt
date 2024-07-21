@@ -35,16 +35,15 @@ object TrackingController {
     }
 
     private fun readData(data: String): UpdateRequestData {
-        val splitData = data.split(",")
+        val splitData = data.split(",").map { it.trim() }
         return UpdateRequestData(splitData[0], splitData[1], splitData[2], splitData.slice(3 until splitData.size).joinToString(","))
     }
 
     fun Route.updateShipment() {
         post("/update") {
             try {
-                val data = call.receiveText().split(",")
                 val updateData = readData(call.receiveText())
-                val shipment = findShipment(updateData.shipmentId) ?: dispatcher.createShipment(ShipmentType.valueOf(updateData.otherInfo ?: ""), updateData.shipmentId)
+                val shipment = findShipment(updateData.shipmentId) ?: dispatcher.createShipment(ShipmentType.valueOf(updateData.otherInfo?.uppercase() ?: ""), updateData.shipmentId)
                 if (updateData.operation in updateOperations) {
                     shipment.addUpdate(updateOperations[updateData.operation]!!, updateData.timeStamp, updateData.otherInfo ?: "")
                 }
