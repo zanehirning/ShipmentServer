@@ -2,9 +2,9 @@ package server.viewmodels
 
 import server.shipment.Shipment
 import server.shipment.ShipmentObserver
-import server.TrackingSimulator
 import androidx.compose.runtime.*
 import androidx.compose.ui.text.input.TextFieldValue
+import server.controllers.TrackingController
 
 class TrackerViewModelState {
     var shipmentTextFieldText by mutableStateOf(TextFieldValue(""))
@@ -23,7 +23,7 @@ class TrackerViewModel : ShipmentObserver {
 
     fun startTrackingShipment(shipmentId: String) {
         uiState.trackedShipmentIds.add(shipmentId)
-        TrackingSimulator.findShipment(shipmentId)?.subscribe(this)
+        TrackingController.findShipment(shipmentId)?.subscribe(this)
     }
 
     fun stopTrackingShipment(shipment: Shipment) {

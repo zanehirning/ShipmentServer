@@ -12,7 +12,10 @@
         function sendUpdate() {
             const input = document.getElementById("shipmentInput");
             console.log("send update")
-            fetch(`/update/${input.value}`, {method: "post"})
+            fetch(`/update`, {
+                method: "post",
+                body: input.value
+            })
         }
     </script>
 </body>

@@ -2,7 +2,7 @@ package server.shipment
 
 import server.updates.Update
 
-class Shipment(
+abstract class Shipment(
     val id: String,
 ) : ShipmentSubject {
     var status: String = "created"

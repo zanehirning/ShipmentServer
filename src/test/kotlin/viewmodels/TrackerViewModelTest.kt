@@ -1,8 +1,9 @@
 package viewmodels
 
-import server.TrackingSimulator
 import org.junit.jupiter.api.Test
+import server.controllers.TrackingController
 import server.shipment.Shipment
+import server.shipment.StandardShipment
 import server.viewmodels.TrackerViewModel
 import kotlin.test.assertEquals
 
@@ -25,7 +26,7 @@ class TrackerViewModelTest {
     fun testStopTrackingShipment() {
         val trackerViewModel = TrackerViewModel()
         trackerViewModel.startTrackingShipment("s12000")
-        trackerViewModel.stopTrackingShipment(TrackingSimulator.findShipment("s12000") ?: Shipment("s12000"))
+        trackerViewModel.stopTrackingShipment(TrackingController.findShipment("s12000") ?: StandardShipment("s12000"))
         assertEquals(trackerViewModel.uiState.trackedShipmentIds.size, 0)
     }
 
@@ -34,7 +35,7 @@ class TrackerViewModelTest {
         val trackerViewModel = TrackerViewModel()
         trackerViewModel.startTrackingShipment("s12000")
         assertEquals(trackerViewModel.uiState.trackedShipmentIds.size, 1)
-        trackerViewModel.notify(TrackingSimulator.findShipment("s12000") ?: Shipment("s12000"))
+        trackerViewModel.notify(TrackingController.findShipment("s12000") ?: StandardShipment("s12000"))
         assertEquals(trackerViewModel.uiState.trackedShipmentIds.size, 1)
     }
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import server.controllers.TrackingController
 import server.ui.ErrorShipmentItem
 import server.ui.ShipmentItem
 import server.viewmodels.TrackerViewModel
@@ -60,7 +61,7 @@ fun App() {
                 }
             }
             state.trackedShipmentIds.reversed().forEach {
-                val shipment = TrackingSimulator.findShipment(it)
+                val shipment = TrackingController.findShipment(it)
                 if (shipment != null) {
                     ShipmentItem(
                         shipment,
