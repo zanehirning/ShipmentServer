@@ -18,6 +18,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import server.ui.ErrorShipmentItem
 import server.ui.ShipmentItem
 import server.viewmodels.TrackerViewModel
@@ -30,7 +31,7 @@ fun App() {
 
     MaterialTheme {
         LaunchedEffect(true) {
-            TrackingServer
+            launch { TrackingServer }
         }
         Column(modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState())) {
             Row(

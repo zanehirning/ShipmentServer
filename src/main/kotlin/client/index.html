@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Simulator</title>
+</head>
+<body>
+    <input type="text" id="shipmentInput" style="padding: 8px; margin: 8px">
+    <button onclick="sendUpdate()" style="background-color: rgb(2, 117, 216); padding: 8px; border: 1px solid black; border-radius: 8px">Send Update</button>
+    <script>
+        function sendUpdate() {
+            const input = document.getElementById("shipmentInput");
+            console.log("send update")
+            fetch(`/update/${input.value}`, {method: "post"})
+        }
+    </script>
+</body>
+</html>
