@@ -10,7 +10,7 @@ import server.shipment.Dispatcher
 import server.shipment.Shipment
 import server.updates.*
 
-private data class UpdateRequestData(val shipmentId: String, val operation: String, val timeStamp: String, val otherInfo: String?)
+private data class UpdateRequestData(val operation: String, val shipmentId: String, val timeStamp: String, val otherInfo: String?)
 
 object TrackingController {
     private val updateOperations: Map<String, Update> = mapOf(
@@ -46,7 +46,6 @@ object TrackingController {
                 val shipment = findShipment(updateData.shipmentId) ?: dispatcher.createShipment(ShipmentType.valueOf(updateData.otherInfo?.uppercase() ?: ""), updateData.shipmentId)
                 if (updateData.operation in updateOperations) {
                     updateOperations[updateData.operation]!!.apply(shipment, updateData.timeStamp.toLong(), updateData.otherInfo ?: "")
-//                    shipment.addUpdate(updateOperations[updateData.operation]!!, updateData.timeStamp, updateData.otherInfo ?: "")
                 }
                 call.respond(HttpStatusCode.OK, "Shipment Updated Successfully!")
             } catch (e: Exception) {

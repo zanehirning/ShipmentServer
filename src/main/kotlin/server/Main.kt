@@ -30,11 +30,6 @@ fun App() {
     val state = viewModel.uiState
 
     MaterialTheme {
-        LaunchedEffect(true) {
-            withContext(Dispatchers.IO) {
-                TrackingServer
-            }
-        }
         Column(modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState())) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -81,6 +76,11 @@ fun App() {
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
+        LaunchedEffect(true) {
+            withContext(Dispatchers.IO) {
+                TrackingServer
+            }
+        }
         App()
     }
 }
