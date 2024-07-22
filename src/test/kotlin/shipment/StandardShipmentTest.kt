@@ -1,15 +1,20 @@
 package shipment
 
+import org.junit.jupiter.api.assertThrows
 import server.shipment.Shipment
 import server.shipment.ShipmentObserver
-import server.shipment.ShippingUpdate
 import server.shipment.StandardShipment
-import server.updates.*
+import server.updates.Created
+import server.updates.Shipped
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-class ShipmentTest {
+/**
+ * Tests for the StandardShipment class
+ * This also tests abstract shipment behavior as StandardShipment is the default Shipment
+ */
+class StandardShipmentTest {
     @Test
     fun testShipmentConstruction() {
         val shipment = StandardShipment("s12000")
@@ -20,20 +25,23 @@ class ShipmentTest {
         assertTrue(shipment.notes.isEmpty(), "Shipment notes are not empty")
         assertTrue(shipment.updateHistory.isEmpty(), "Shipment update history is not empty")
 
-        val shipment2 = StandardShipment("")
-        assertEquals("", shipment2.id, "Shipment id is not what was expected")
-        assertEquals("", shipment2.location, "Shipment location is not what was expected")
-        assertEquals("created", shipment2.status, "Shipment status is not what was expected")
-        assertEquals(null, shipment2.expectedDeliveryDateTimestamp, "Shipment expected delivery date is not what was expected")
-        assertTrue(shipment2.notes.isEmpty(), "Shipment notes are not empty")
-        assertTrue(shipment2.updateHistory.isEmpty(), "Shipment update history is not empty")
+        assertThrows<IllegalArgumentException> {
+            StandardShipment("")
+        }
     }
 
     @Test
     fun testAddUpdate() {
-        // Status changes are tested in respective updates, this will test the update history
-        //TODO: Change these tests to match the new implementation
         val shipment = StandardShipment("s12000")
+        Created().apply(shipment, 1234567890, "")
+        shipment.addUpdate(1234567890)
+        assertEquals(1, shipment.updateHistory.size, "Shipment update history size is not what was expected")
+        assertEquals("created", shipment.updateHistory[0].previousStatus, "Shipment update history previous status is not what was expected")
+
+        Shipped().apply(shipment, 1234567890, "123123")
+        assertEquals(2, shipment.updateHistory.size, "Shipment update history size is not what was expected")
+        assertEquals("created", shipment.updateHistory[1].previousStatus, "Shipment update history previous status is not what was expected")
+        assertEquals("shipped", shipment.updateHistory[1].newStatus, "Shipment update history previous status is not what was expected")
     }
 
     @Test

@@ -1,10 +1,13 @@
 package server.shipment
 
-import server.updates.Update
-
 abstract class Shipment(
     val id: String,
 ) : ShipmentSubject {
+    init {
+        if (id.isEmpty()) {
+            throw IllegalArgumentException("Shipment id cannot be empty")
+        }
+    }
     var status: String = "created"
         set(value) {
             field = value
