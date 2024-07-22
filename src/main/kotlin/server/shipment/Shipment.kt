@@ -38,7 +38,9 @@ abstract class Shipment(
     }
 
     fun addNote(note: String) {
-        notes.add(note)
+        val newNotes = notes.toMutableList()
+        newNotes.add(note)
+        notes = newNotes
     }
 
     override fun subscribe(observer: ShipmentObserver) {
