@@ -45,7 +45,8 @@ object TrackingController {
                 val updateData = readData(call.receiveText())
                 val shipment = findShipment(updateData.shipmentId) ?: dispatcher.createShipment(ShipmentType.valueOf(updateData.otherInfo?.uppercase() ?: ""), updateData.shipmentId)
                 if (updateData.operation in updateOperations) {
-                    shipment.addUpdate(updateOperations[updateData.operation]!!, updateData.timeStamp, updateData.otherInfo ?: "")
+                    updateOperations[updateData.operation]!!.apply(shipment, updateData.timeStamp.toLong(), updateData.otherInfo ?: "")
+//                    shipment.addUpdate(updateOperations[updateData.operation]!!, updateData.timeStamp, updateData.otherInfo ?: "")
                 }
                 call.respond(HttpStatusCode.OK, "Shipment Updated Successfully!")
             } catch (e: Exception) {

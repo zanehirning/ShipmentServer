@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test
 import server.updates.Delivered
 import server.updates.Update
 import server.shipment.Shipment
+import server.shipment.StandardShipment
 import kotlin.test.assertTrue
 
 class DeliveredTest {
@@ -16,8 +17,8 @@ class DeliveredTest {
 
     @Test
     fun testDeliveredApply() {
-        val shipment = Shipment("s12000")
-        Delivered().apply(shipment, "")
+        val shipment = StandardShipment("s12000")
+        Delivered().apply(shipment, 123123, "")
         assertEquals("delivered", shipment.status, "Shipment status is not what was expected")
     }
 }

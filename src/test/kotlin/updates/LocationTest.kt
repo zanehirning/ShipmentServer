@@ -3,6 +3,7 @@ package updates
 import org.junit.jupiter.api.Assertions.assertEquals
 import server.updates.Update
 import server.shipment.Shipment
+import server.shipment.StandardShipment
 import server.updates.Location
 import kotlin.test.Test
 import kotlin.test.assertTrue
@@ -16,8 +17,8 @@ class LocationTest {
 
     @Test
     fun testLocationApply() {
-        val shipment = Shipment("s12000")
-        Location().apply(shipment, "New York")
+        val shipment = StandardShipment("s12000")
+        Location().apply(shipment, 123123, "New York")
         assertEquals("New York", shipment.location, "Shipment location is not what was expected")
         kotlin.test.assertEquals("created", shipment.status, "Shipment status is not what was expected")
     }

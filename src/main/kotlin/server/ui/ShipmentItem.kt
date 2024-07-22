@@ -36,7 +36,7 @@ fun ShipmentItem(shipment: Shipment, onShipmentClose: () -> Unit) {
         Text("Status: ${shipment.status}", modifier = Modifier.padding(horizontal = 10.dp))
         Text("Location: ${shipment.location}", modifier = Modifier.padding(horizontal = 10.dp))
         Text(
-            "Expected Delivery: ${Date(shipment.expectedDeliveryDateTimestamp)}",
+            "Expected Delivery: ${if (shipment.expectedDeliveryDateTimestamp != null) Date(shipment.expectedDeliveryDateTimestamp!!) else "No Delivery Date"}",
             modifier = Modifier.padding(horizontal = 10.dp)
         )
         Spacer(modifier = Modifier.padding(10.dp))

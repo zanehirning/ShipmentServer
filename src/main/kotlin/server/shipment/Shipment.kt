@@ -22,22 +22,16 @@ abstract class Shipment(
         }
     var updateHistory = mutableListOf<ShippingUpdate>()
         private set
-    open var expectedDeliveryDateTimestamp: Long = 0
+    var creationDateTimeStamp: Long? = null
+    open var expectedDeliveryDateTimestamp: Long? = null
     private val subscribers = mutableListOf<ShipmentObserver>()
 
-    fun addUpdate(update: Update, timeStampOfUpdate: String, otherInfo: String) {
-        update.apply(this, otherInfo)
-        val lastStatus = if (updateHistory.isEmpty()) "created" else updateHistory.last().newStatus
-        if (this.status == "created" && lastStatus != this.status) {
-            this.status = lastStatus
-        }
-        else if (this.status != "created" && lastStatus != this.status && update.javaClass.simpleName != "Created") {
-            updateHistory += ShippingUpdate(
-                previousStatus = lastStatus,
-                newStatus = this.status,
-                timestamp = timeStampOfUpdate.toLong()
-            )
-        }
+    fun addUpdate(timeStampOfUpdate: Long) {
+        updateHistory += ShippingUpdate(
+            previousStatus = updateHistory.lastOrNull()?.newStatus ?: "created",
+            newStatus = this.status,
+            timestamp = timeStampOfUpdate
+        )
     }
 
     fun addNote(note: String) {
